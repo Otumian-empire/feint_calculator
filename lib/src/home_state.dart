@@ -30,6 +30,7 @@ class HomePageState extends State<HomePage> {
       result = "0";
       lastResult = 0;
       operator = "";
+      errorMessage = "";
     });
   }
 
@@ -45,6 +46,8 @@ class HomePageState extends State<HomePage> {
         var baseNumber = int.tryParse(result) ?? 0;
         if (baseNumber == 0) {
           errorMessage = "Can not divide by zero";
+          lastResult = 0;
+          result = "";
         } else {
           lastResult /= baseNumber;
         }
