@@ -1,3 +1,4 @@
+import 'package:feint_calculator/src/button_widget.dart';
 import 'package:feint_calculator/src/home.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +19,17 @@ class HomePageState extends State<HomePage> {
   }
 
   onOperatorPress(String op) {
-    setState(() {
-      operator = op;
-      lastResult = int.tryParse(result) ?? 0;
-      result = "";
-    });
+    if (op == "C") {
+      onCancelPress();
+    } else if (op == "=") {
+      onEqualToPress();
+    } else {
+      setState(() {
+        operator = op;
+        lastResult = int.tryParse(result) ?? lastResult;
+        result = "";
+      });
+    }
   }
 
   onCancelPress() {
@@ -55,6 +62,7 @@ class HomePageState extends State<HomePage> {
         lastResult = int.tryParse(result) ?? 0;
       }
 
+      operator = "";
       result = "=$lastResult";
     });
   }
@@ -76,109 +84,86 @@ class HomePageState extends State<HomePage> {
           Text(result),
           Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("1");
-                },
-                child: const Text("1"),
+              ButtonWidget(
+                label: "1",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("2");
-                },
-                child: const Text("2"),
+              ButtonWidget(
+                label: "2",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("3");
-                },
-                child: const Text("3"),
+              ButtonWidget(
+                label: "3",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onOperatorPress("+");
-                },
-                child: const Text("+"),
+              ButtonWidget(
+                label: "+",
+                onPressFunction: onOperatorPress,
               ),
             ],
           ),
           Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("4");
-                },
-                child: const Text("4"),
+              ButtonWidget(
+                label: "4",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("3");
-                },
-                child: const Text("5"),
+              ButtonWidget(
+                label: "5",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("6");
-                },
-                child: const Text("6"),
+              ButtonWidget(
+                label: "6",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onOperatorPress("-");
-                },
-                child: const Text("-"),
+              ButtonWidget(
+                label: "-",
+                onPressFunction: onOperatorPress,
               ),
             ],
           ),
           Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("7");
-                },
-                child: const Text("7"),
+              ButtonWidget(
+                label: "7",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("8");
-                },
-                child: const Text("8"),
+              ButtonWidget(
+                label: "8",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("9");
-                },
-                child: const Text("9"),
+              ButtonWidget(
+                label: "9",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onOperatorPress("/");
-                },
-                child: const Text("/"),
+              ButtonWidget(
+                label: "/",
+                onPressFunction: onOperatorPress,
               ),
             ],
           ),
           Row(
             children: [
-              TextButton(
-                onPressed: onCancelPress,
-                child: const Text("C"),
+              ButtonWidget(
+                label: "C",
+                onPressFunction: onOperatorPress,
               ),
-              TextButton(
-                onPressed: () {
-                  onNumberKeyPress("0");
-                },
-                child: const Text("0"),
+              ButtonWidget(
+                label: "0",
+                onPressFunction: onNumberKeyPress,
               ),
-              TextButton(
-                onPressed: onEqualToPress,
-                child: const Text("="),
+              ButtonWidget(
+                onPressFunction: onOperatorPress,
+                label: "=",
               ),
               TextButton(
                 onPressed: () {
                   onOperatorPress("*");
                 },
                 child: const Text("*"),
+              ButtonWidget(
+                onPressFunction: onOperatorPress,
+                label: "*",
               ),
             ],
           ),
