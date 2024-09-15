@@ -156,11 +156,6 @@ class HomePageState extends State<HomePage> {
                 onPressFunction: onOperatorPress,
                 label: "=",
               ),
-              TextButton(
-                onPressed: () {
-                  onOperatorPress("*");
-                },
-                child: const Text("*"),
               ButtonWidget(
                 onPressFunction: onOperatorPress,
                 label: "*",
